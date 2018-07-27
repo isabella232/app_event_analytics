@@ -232,14 +232,14 @@
     },
     "filters": [
       {
-        "defaultValue": "364 day",
-        "field": "ga_sessions.partition_date",
+        "defaultValue": "28 day",
+        "field": "ga_sessions.period",
         "name": "Time Frame",
         "type": "TimeFrame",
         "dashboardAlias": "Period"
       },
       {
-        "defaultValue": "Yes",
+        "defaultValue": "",
         "field": "ga_sessions.first_time_visitor",
         "name": "First Time Visitor",
         "type": "YesNo",
@@ -297,7 +297,7 @@
           "filters": [
             {
               "defaultValue": "364 day",
-              "field": "ga_sessions.partition_date",
+              "field": "ga_sessions.period",
               "name": "Time Frame",
               "type": "TimeFrame",
               "dashboardAlias": "Period"
@@ -325,23 +325,23 @@
           ]
         },
         {
-          "name": "Transactions & Revenue",
-          "permalink": "transactions-conversions-revenue",
+          "name": "Revenue",
+          "permalink": "revenue",
           "type": "dashboardCollection",
           "dashboardCollection": {
             "dashboards": [
               {
-                "lookmlID": "event_analytics::transactions_conversions_and_revenue",
-                "name": "Transactions and Revenue",
-                "permalink": "transactions-conversions-revenue"
+                "lookmlID": "event_analytics::revenue",
+                "name": "revenue",
+                "permalink": "revenue"
               }
             ],
-            "defaultDashboard": "transactions-conversions-revenue"
+            "defaultDashboard": "revenue"
           },
           "filters": [
             {
               "defaultValue": "364 day",
-              "field": "ga_sessions.partition_date",
+              "field": "ga_sessions.period",
               "name": "Time Frame",
               "type": "TimeFrame",
               "dashboardAlias": "Period"
@@ -385,7 +385,51 @@
           "filters": [
             {
               "defaultValue": "364 day",
-              "field": "ga_sessions.partition_date",
+              "field": "ga_sessions.period",
+              "name": "Time Frame",
+              "type": "TimeFrame",
+              "dashboardAlias": "Period"
+            },
+            {
+              "autoSuggest": {
+                "model": "event_analytics",
+                "view": "ga_sessions"
+              },
+              "field": "trafficSource.campaign",
+              "dashboardAlias": "Campaign",
+              "name": "Campaign",
+              "type": "Select"
+            },
+            {
+              "autoSuggest": {
+              "model": "event_analytics",
+              "view": "ga_sessions"
+              },
+              "field": "ga_sessions.first_time_visitor",
+              "name": "First Time Visitor",
+              "type": "Select",
+              "dashboardAlias": "First Time Visitor"
+            }
+          ]
+        },
+        {
+          "name": "Conversions",
+          "permalink": "conversions",
+          "type": "dashboardCollection",
+          "dashboardCollection": {
+            "dashboards": [
+              {
+                "lookmlID": "event_analytics::conversions",
+                "name": "Traffic Engagement",
+                "permalink": "conversions"
+              }
+            ],
+            "defaultDashboard": "conversions"
+          },
+          "filters": [
+            {
+              "defaultValue": "364 day",
+              "field": "ga_sessions.period",
               "name": "Time Frame",
               "type": "TimeFrame",
               "dashboardAlias": "Period"
