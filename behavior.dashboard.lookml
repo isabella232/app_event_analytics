@@ -1,6 +1,6 @@
-- dashboard: traffic_engagement_overview
+- dashboard: behavior
   extends: event_analytics_dash_base
-  title: Traffic Engagement Overview
+  title: Behavior
   embed_style:
     background_color: "#ffffff"
     title_color: "#3a4245"
@@ -14,9 +14,9 @@
     col: 0
     width: 24
     height: 2
-  - name: Hows your content performing?
+  - name: How is your content performing?
     type: text
-    title_text: Hows your content performing?
+    title_text: How is your content performing?
     row: 38
     col: 0
     width: 24
@@ -28,8 +28,8 @@
     col: 0
     width: 24
     height: 2
-  - title: Total Sessions
-    name: Total Sessions
+  - title: Sessions
+    name: Sessions
     model: event_analytics
     explore: ga_sessions
     type: single_value
@@ -148,7 +148,7 @@
       orientation: left
       series:
       - id: ga_sessions.returning_visitors
-        name: Returning Visitors
+        name: Returning Users
         axisId: ga_sessions.returning_visitors
         __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
         __LINE_NUM: 150
@@ -196,7 +196,7 @@
       orientation: left
       series:
       - id: percent_new_visitors
-        name: Percent New Visitors
+        name: Percent New Users
         axisId: percent_new_visitors
         __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
         __LINE_NUM: 198
@@ -258,8 +258,8 @@
     col: 0
     width: 5
     height: 3
-  - title: New Visitors
-    name: New Visitors
+  - title: New Users
+    name: New Users
     model: event_analytics
     explore: ga_sessions
     type: single_value
@@ -329,7 +329,7 @@
       _kind_hint: measure
       _type_hint: number
     - table_calculation: new_visitors
-      label: New Visitors
+      label: New Users
       expression: "(${totals.newVisits_total} - offset(${totals.newVisits_total},\
         \ 1)) / offset(${totals.newVisits_total}, 1)"
       value_format:
@@ -387,7 +387,7 @@
       orientation: left
       series:
       - id: ga_sessions.returning_visitors
-        name: Returning Visitors
+        name: Returning Users
         axisId: ga_sessions.returning_visitors
         __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
         __LINE_NUM: 389
@@ -435,7 +435,7 @@
       orientation: left
       series:
       - id: percent_new_visitors
-        name: Percent New Visitors
+        name: Percent New Users
         axisId: percent_new_visitors
         __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
         __LINE_NUM: 437
@@ -499,8 +499,8 @@
     col: 5
     width: 5
     height: 3
-  - title: Avg Pages Per Session
-    name: Avg Pages Per Session
+  - title: Pages / Session
+    name: Pages / Session
     model: event_analytics
     explore: ga_sessions
     type: single_value
@@ -571,7 +571,7 @@
       _kind_hint: measure
       _type_hint: number
     - table_calculation: new_visitors
-      label: New Visitors
+      label: New Users
       expression: "(${totals.newVisits_total} - offset(${totals.newVisits_total},\
         \ 1)) / offset(${totals.newVisits_total}, 1)"
       value_format:
@@ -637,7 +637,7 @@
       orientation: left
       series:
       - id: ga_sessions.returning_visitors
-        name: Returning Visitors
+        name: Returning Users
         axisId: ga_sessions.returning_visitors
         __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
         __LINE_NUM: 639
@@ -685,7 +685,7 @@
       orientation: left
       series:
       - id: percent_new_visitors
-        name: Percent New Visitors
+        name: Percent New Users
         axisId: percent_new_visitors
         __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
         __LINE_NUM: 687
@@ -874,7 +874,7 @@
       _kind_hint: measure
       _type_hint: number
     - table_calculation: new_visitors
-      label: New Visitors
+      label: New Users
       expression: "(${totals.newVisits_total} - offset(${totals.newVisits_total},\
         \ 1)) / offset(${totals.newVisits_total}, 1)"
       value_format:
@@ -940,7 +940,7 @@
       orientation: left
       series:
       - id: ga_sessions.returning_visitors
-        name: Returning Visitors
+        name: Returning Users
         axisId: ga_sessions.returning_visitors
         __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
         __LINE_NUM: 942
@@ -988,7 +988,7 @@
       orientation: left
       series:
       - id: percent_new_visitors
-        name: Percent New Visitors
+        name: Percent New Users
         axisId: percent_new_visitors
         __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
         __LINE_NUM: 990
@@ -1174,7 +1174,7 @@
       orientation: left
       series:
       - id: ga_sessions.returning_visitors
-        name: Returning Visitors
+        name: Returning Users
         axisId: ga_sessions.returning_visitors
         __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
         __LINE_NUM: 1176
@@ -1222,7 +1222,7 @@
       orientation: left
       series:
       - id: percent_new_visitors
-        name: Percent New Visitors
+        name: Percent New Users
         axisId: percent_new_visitors
         __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
         __LINE_NUM: 1224
@@ -1284,8 +1284,8 @@
     col: 10
     width: 5
     height: 3
-  - title: Returning Visitors
-    name: Returning Visitors
+  - title: Users
+    name: Users
     model: event_analytics
     explore: ga_sessions
     type: single_value
@@ -1294,7 +1294,6 @@
     - ga_sessions.session_count
     - totals.timeonsite_average_per_session
     - ga_sessions.unique_visitors
-    - ga_sessions.returning_visitors
     - totals.transaction_conversion_rate
     - totals.bounce_rate
     filters:
@@ -1325,14 +1324,6 @@
       label: Users
       expression: "(${ga_sessions.unique_visitors} - offset(${ga_sessions.unique_visitors},\
         \ 1)) / offset(${ga_sessions.unique_visitors}, 1)"
-      value_format:
-      value_format_name: percent_2
-      _kind_hint: measure
-      _type_hint: number
-    - table_calculation: returning_users
-      label: Returning Users
-      expression: "(${ga_sessions.returning_visitors} - offset(${ga_sessions.returning_visitors},\
-        \ 1)) / offset(${ga_sessions.returning_visitors}, 1)"
       value_format:
       value_format_name: percent_2
       _kind_hint: measure
@@ -1390,7 +1381,7 @@
       - id: ga_sessions.unique_visitors
         name: Unique Visitors
         axisId: ga_sessions.unique_visitors
-        __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
+        __FILE: app_event_analytics/behavior.dashboard.lookml
         __LINE_NUM: 1390
       showLabels: false
       showValues: false
@@ -1398,15 +1389,15 @@
       tickDensity: default
       tickDensityCustom: 5
       type: linear
-      __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
+      __FILE: app_event_analytics/behavior.dashboard.lookml
       __LINE_NUM: 1387
     - label:
       orientation: left
       series:
       - id: ga_sessions.returning_visitors
-        name: Returning Visitors
+        name: Returning Users
         axisId: ga_sessions.returning_visitors
-        __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
+        __FILE: app_event_analytics/behavior.dashboard.lookml
         __LINE_NUM: 1406
       showLabels: false
       showValues: false
@@ -1414,7 +1405,7 @@
       tickDensity: default
       tickDensityCustom: 5
       type: linear
-      __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
+      __FILE: app_event_analytics/behavior.dashboard.lookml
       __LINE_NUM: 1403
     - label:
       orientation: left
@@ -1422,7 +1413,7 @@
       - id: ga_sessions.session_count
         name: Session Count
         axisId: ga_sessions.session_count
-        __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
+        __FILE: app_event_analytics/behavior.dashboard.lookml
         __LINE_NUM: 1422
       showLabels: false
       showValues: false
@@ -1430,7 +1421,7 @@
       tickDensity: default
       tickDensityCustom: 5
       type: linear
-      __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
+      __FILE: app_event_analytics/behavior.dashboard.lookml
       __LINE_NUM: 1419
     - label:
       orientation: left
@@ -1438,7 +1429,7 @@
       - id: totals.timeonsite_average_per_session
         name: Time On Site Average Per Session
         axisId: totals.timeonsite_average_per_session
-        __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
+        __FILE: app_event_analytics/behavior.dashboard.lookml
         __LINE_NUM: 1438
       showLabels: false
       showValues: false
@@ -1446,22 +1437,22 @@
       tickDensity: default
       tickDensityCustom: 5
       type: linear
-      __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
+      __FILE: app_event_analytics/behavior.dashboard.lookml
       __LINE_NUM: 1435
     - label: ''
       orientation: left
       series:
       - id: percent_new_visitors
-        name: Percent New Visitors
+        name: Percent New Users
         axisId: percent_new_visitors
-        __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
+        __FILE: app_event_analytics/behavior.dashboard.lookml
         __LINE_NUM: 1454
       showLabels: false
       showValues: false
       unpinAxis: false
       tickDensity: default
       type: linear
-      __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
+      __FILE: app_event_analytics/behavior.dashboard.lookml
       __LINE_NUM: 1451
     - label:
       orientation: right
@@ -1469,7 +1460,7 @@
       - id: totals.transaction_conversion_rate
         name: Transaction Conversion Rate
         axisId: totals.transaction_conversion_rate
-        __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
+        __FILE: app_event_analytics/behavior.dashboard.lookml
         __LINE_NUM: 1469
       showLabels: false
       showValues: false
@@ -1477,7 +1468,7 @@
       tickDensity: default
       tickDensityCustom: 5
       type: linear
-      __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
+      __FILE: app_event_analytics/behavior.dashboard.lookml
       __LINE_NUM: 1466
     colors:
     - "#58A9F5"
@@ -1500,8 +1491,6 @@
     - sessions
     - totals.timeonsite_average_per_session
     - avg_duration
-    - ga_sessions.unique_visitors
-    - users
     - totals.transaction_conversion_rate
     - conversion_rate
     - bounce_rate
@@ -1533,7 +1522,7 @@
     column_limit: 50
     dynamic_fields:
     - table_calculation: average_time_spent_per_page
-      label: Average Time Spent per Page
+      label: Avg. Time on Page
       expression: "${totals.timeonsite_average_per_session}/${totals.page_views_session}"
       value_format:
       value_format_name: decimal_2
@@ -1554,7 +1543,7 @@
       _kind_hint: measure
       _type_hint: number
     - table_calculation: total_sessions
-      label: Total Sessions
+      label: Sessions
       expression: "${ga_sessions.session_count}"
       value_format:
       value_format_name: decimal_2
@@ -1614,7 +1603,7 @@
         __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
         __LINE_NUM: 1611
       - id: average_time_spent_per_page
-        name: Average Time Spent per Page
+        name: Avg. Time on Page
         axisId: average_time_spent_per_page
         __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
         __LINE_NUM: 1616
@@ -1638,7 +1627,7 @@
       orientation: bottom
       series:
       - id: total_sessions
-        name: Total Sessions
+        name: Sessions
         axisId: total_sessions
         __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
         __LINE_NUM: 1640
@@ -1705,7 +1694,7 @@
     column_limit: 50
     dynamic_fields:
     - table_calculation: average_time_spent_per_page
-      label: Average Time Spent per Page
+      label: Avg. Time on Page
       expression: "${totals.timeonsite_average_per_session}/${totals.page_views_session}"
       value_format:
       value_format_name: decimal_2
@@ -1726,7 +1715,7 @@
       _kind_hint: measure
       _type_hint: number
     - table_calculation: total_sessions
-      label: Total Sessions
+      label: Sessions
       expression: "${ga_sessions.session_count}"
       value_format:
       value_format_name: decimal_2
@@ -1786,7 +1775,7 @@
         __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
         __LINE_NUM: 1783
       - id: average_time_spent_per_page
-        name: Average Time Spent per Page
+        name: Avg. Time on Page
         axisId: average_time_spent_per_page
         __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
         __LINE_NUM: 1788
@@ -1810,7 +1799,7 @@
       orientation: bottom
       series:
       - id: total_sessions
-        name: Total Sessions
+        name: Sessions
         axisId: total_sessions
         __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
         __LINE_NUM: 1812
@@ -1879,33 +1868,6 @@
     limit: 500
     column_limit: 50
     stacking: ''
-    show_value_labels: true
-    label_density: 25
-    legend_position: center
-    x_axis_gridlines: false
-    y_axis_gridlines: true
-    show_view_names: false
-    limit_displayed_rows: false
-    y_axis_combined: true
-    show_y_axis_labels: true
-    show_y_axis_ticks: true
-    y_axis_tick_density: default
-    y_axis_tick_density_custom: 5
-    show_x_axis_label: true
-    show_x_axis_ticks: true
-    x_axis_scale: auto
-    y_axis_scale_mode: linear
-    x_axis_reversed: false
-    y_axis_reversed: false
-    show_null_points: true
-    point_style: circle
-    interpolation: monotone
-    ordering: none
-    show_null_labels: false
-    show_totals_labels: false
-    show_silhouette: false
-    totals_color: "#808080"
-    series_types: {}
     colors:
     - "#58A9F5"
     - "#FF666C"
@@ -1917,7 +1879,26 @@
     - "#D0A997"
     - "#8696B8"
     - "#C5D4B2"
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    point_style: circle
     series_colors: {}
+    series_labels:
+      ga_sessions.unique_visitors: Users
+      totals.page_views_session: Pages / Session
+      ga_sessions.average_sessions_per_visitor: Sessions / User
+      totals.timeonsite_average_per_session: Session Duration
+    series_types: {}
+    limit_displayed_rows: false
+    hidden_series:
+    - ga_sessions.returning_visitors
+    - ga_sessions.average_sessions_per_visitor
+    - totals.page_views_session
+    - totals.bounce_rate
     y_axes:
     - label: ''
       orientation: left
@@ -1925,7 +1906,7 @@
       - id: ga_sessions.unique_visitors
         name: Session Unique Visitors
         axisId: ga_sessions.unique_visitors
-        __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
+        __FILE: app_event_analytics/behavior.dashboard.lookml
         __LINE_NUM: 1925
       showLabels: false
       showValues: false
@@ -1933,7 +1914,7 @@
       tickDensity: default
       tickDensityCustom: 5
       type: linear
-      __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
+      __FILE: app_event_analytics/behavior.dashboard.lookml
       __LINE_NUM: 1922
     - label:
       orientation: left
@@ -1941,7 +1922,7 @@
       - id: ga_sessions.average_sessions_per_visitor
         name: Session Average Sessions Ver Visitor
         axisId: ga_sessions.average_sessions_per_visitor
-        __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
+        __FILE: app_event_analytics/behavior.dashboard.lookml
         __LINE_NUM: 1941
       showLabels: false
       showValues: false
@@ -1949,15 +1930,15 @@
       tickDensity: default
       tickDensityCustom: 5
       type: linear
-      __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
+      __FILE: app_event_analytics/behavior.dashboard.lookml
       __LINE_NUM: 1938
     - label:
       orientation: left
       series:
       - id: ga_sessions.returning_visitors
-        name: Session Returning Visitors
+        name: Session Returning Users
         axisId: ga_sessions.returning_visitors
-        __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
+        __FILE: app_event_analytics/behavior.dashboard.lookml
         __LINE_NUM: 1957
       showLabels: false
       showValues: false
@@ -1965,7 +1946,7 @@
       tickDensity: default
       tickDensityCustom: 5
       type: linear
-      __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
+      __FILE: app_event_analytics/behavior.dashboard.lookml
       __LINE_NUM: 1954
     - label:
       orientation: left
@@ -1973,7 +1954,7 @@
       - id: totals.timeonsite_average_per_session
         name: Session Time On Site Average Per Session
         axisId: totals.timeonsite_average_per_session
-        __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
+        __FILE: app_event_analytics/behavior.dashboard.lookml
         __LINE_NUM: 1973
       showLabels: false
       showValues: false
@@ -1981,7 +1962,7 @@
       tickDensity: default
       tickDensityCustom: 5
       type: linear
-      __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
+      __FILE: app_event_analytics/behavior.dashboard.lookml
       __LINE_NUM: 1970
     - label:
       orientation: left
@@ -1989,7 +1970,7 @@
       - id: totals.bounce_rate
         name: Session Bounce Rate
         axisId: totals.bounce_rate
-        __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
+        __FILE: app_event_analytics/behavior.dashboard.lookml
         __LINE_NUM: 1989
       showLabels: false
       showValues: false
@@ -1997,7 +1978,7 @@
       tickDensity: default
       tickDensityCustom: 5
       type: linear
-      __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
+      __FILE: app_event_analytics/behavior.dashboard.lookml
       __LINE_NUM: 1986
     - label:
       orientation: left
@@ -2005,7 +1986,7 @@
       - id: totals.page_views_session
         name: Session PageViews Per Session
         axisId: totals.page_views_session
-        __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
+        __FILE: app_event_analytics/behavior.dashboard.lookml
         __LINE_NUM: 2005
       showLabels: false
       showValues: false
@@ -2013,17 +1994,32 @@
       tickDensity: default
       tickDensityCustom: 5
       type: linear
-      __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
+      __FILE: app_event_analytics/behavior.dashboard.lookml
       __LINE_NUM: 2002
-    hidden_series:
-    - ga_sessions.returning_visitors
-    - ga_sessions.average_sessions_per_visitor
-    - totals.page_views_session
-    - totals.bounce_rate
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: false
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    show_null_points: true
+    interpolation: monotone
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
     listen:
       Period: ga_sessions.period
       Campaign: trafficSource.campaign
       First TIme Visitor: ga_sessions.first_time_visitor
+    title_hidden: true
     row: 8
     col: 0
     width: 24
@@ -2047,7 +2043,7 @@
     column_limit: 50
     dynamic_fields:
     - table_calculation: average_time_spent_per_page
-      label: Average Time Spent per Page
+      label: Avg. Time on Page
       expression: "${totals.timeonsite_average_per_session}/${totals.page_views_session}"
       value_format:
       value_format_name: decimal_2
@@ -2068,7 +2064,7 @@
       _kind_hint: measure
       _type_hint: number
     - table_calculation: total_sessions
-      label: Total Sessions
+      label: Sessions
       expression: "${ga_sessions.session_count}"
       value_format:
       value_format_name: decimal_2
@@ -2128,7 +2124,7 @@
         __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
         __LINE_NUM: 2125
       - id: average_time_spent_per_page
-        name: Average Time Spent per Page
+        name: Avg. Time on Page
         axisId: average_time_spent_per_page
         __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
         __LINE_NUM: 2130
@@ -2152,7 +2148,7 @@
       orientation: bottom
       series:
       - id: total_sessions
-        name: Total Sessions
+        name: Sessions
         axisId: total_sessions
         __FILE: app_event_analytics/traffic_engagement_overview.dashboard.lookml
         __LINE_NUM: 2154
@@ -2290,8 +2286,8 @@
     col: 0
     width: 13
     height: 12
-  - title: How many seconds are user spending on your site?
-    name: How many seconds are user spending on your site?
+  - title: How many seconds are users spending on your site?
+    name: How many seconds are users spending on your site?
     model: event_analytics
     explore: ga_sessions
     type: looker_column
